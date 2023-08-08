@@ -20,9 +20,19 @@ class UserSeeder extends Seeder
             'last_name' => 'Admin',
             'email' => 'admin@gmail.com',
             'phone' => '+9999999',
-            'password' => Hash::make('qwerty123'),
+            'password' => Hash::make('password'),
+        ]);
+
+        $user = User::create([
+            'first_name' => 'Bobur',
+            'last_name' => 'Babajanov',
+            'email' => 'bobur@gmail.com',
+            'phone' => '+998914321545',
+            'password' => Hash::make('password'),
         ]);
         $admin->roles()->attach(1);
+        $user->roles()->attach(2);
+
 
         User::factory()->count(10)->hasAttached(Role::find(2))->create();
     }

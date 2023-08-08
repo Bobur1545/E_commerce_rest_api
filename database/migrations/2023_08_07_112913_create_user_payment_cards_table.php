@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('user_payment_cards', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

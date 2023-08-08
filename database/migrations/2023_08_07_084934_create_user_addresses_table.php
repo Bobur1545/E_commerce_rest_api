@@ -21,6 +21,7 @@ return new class extends Migration
             $table->text('street')->nullable();
             $table->text('home')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
