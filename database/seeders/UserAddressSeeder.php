@@ -27,7 +27,7 @@ class UserAddressSeeder extends Seeder
             'longitude' => '25.3254',
             'region' => 'Xorazm',
             'district' => 'Urganch tuman',
-            'street' => 'Oq oltin',
+            'street' => 'Oq oltin kochasi',
             'home' => '6'
         ]);
     }
