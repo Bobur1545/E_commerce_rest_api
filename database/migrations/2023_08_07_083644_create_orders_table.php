@@ -6,9 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
+
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
@@ -18,6 +17,7 @@ return new class extends Migration
             $table->foreignId('delivery_method_id')->constrained();
             $table->foreignId('payment_type_id')->constrained();
             $table->unsignedBigInteger('sum');
+            $table->foreignId('status_id')->default(1)->constrained();
             $table->text('address')->nullable();
             $table->json('products');
             $table->timestamps();
@@ -25,9 +25,9 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
+
+
     public function down(): void
     {
         Schema::dropIfExists('orders');
