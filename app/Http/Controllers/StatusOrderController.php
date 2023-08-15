@@ -14,9 +14,8 @@ class   StatusOrderController extends Controller
         $order = Order::findOrFail($request['order_id']);
         $order->update(['status_id' => $status->id]);
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'status is succesfully updated'
-        ]);
+        return $this->success(
+            'status is succesfully updated'
+        );
     }
 }

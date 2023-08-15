@@ -34,9 +34,10 @@ class UserAddressController extends Controller
     public function store(StoreUserAddressRequest $request)
     {
         auth()->user()->addresses()->create($request->toArray());
-        return response()->json([
-            'success' => 'UserAddress is successfully added'
-        ]);
+
+        return $this->success(
+            'UserAddress is successfully added'
+        );
     }
 
     /**

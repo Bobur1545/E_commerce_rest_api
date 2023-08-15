@@ -22,9 +22,9 @@ class FavoriteController extends Controller
     {
         auth()->user()->favorites()->attach($request->product_id);
 
-        return response()->json([
-            'success' => true,
-        ]);
+        return $this->success(
+            'Stored successfully'
+        );
     }
 
     /*
@@ -35,14 +35,12 @@ class FavoriteController extends Controller
         if(auth()->user()->hasFavorite($favorite_id)){
             auth()->user()->favorites()->detach($favorite_id);
 
-            return response()->json([
-               'success' => true,
-                'message' => 'favorites have been successfully deleted from the user',
-            ]);
+            return $this->success(
+                'Favorites have been successfully deleted from the user'
+            );
         }
-        return response()->json([
-            'success' => false,
-            'message' => 'favorites does not exist in this user',
-        ]);
+        return $this->error(
+             'Favorites does not exist in this user',
+        );
     }
 }

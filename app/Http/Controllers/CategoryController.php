@@ -6,13 +6,15 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 
 class CategoryController extends Controller
 {
 
-    public function index(): Collection
+    public function index(): JsonResponse
     {
-        return Category::all();
+        return $this->response([Category::all()]);
+
     }
 
     public function create()

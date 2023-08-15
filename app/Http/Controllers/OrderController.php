@@ -83,19 +83,17 @@ class OrderController extends Controller
                 }
             }
 
-            return response()->json([
-                'status' => 'success',
-                'message' => 'Order is succsesfully added'
-            ]);
+            return $this->success(
+                'Order is succsesfully stored',
+                ['order' => $order]
+            );
         }
-
         else
         {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Some product not found or does not have in inventory',
-                'not_found_product' => $notFoundProducts,
-            ]);
+            return $this->error(
+                'Some product not found or does not have in inventory',
+                ['not_found_product' => $notFoundProducts]
+            );
         }
     }
 

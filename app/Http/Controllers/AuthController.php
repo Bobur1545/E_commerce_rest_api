@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +19,8 @@ class AuthController extends Controller
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
-        return response()->json([
+
+        return $this->response([
             'token' => $user->createToken($request->email)->plainTextToken
         ]);
     }
@@ -28,8 +30,8 @@ class AuthController extends Controller
 
     }
 
-    public function user(Request $request)
+    public function user(Request $request): UserResource
     {
-        return $request->user();
+        return new UserResource($request->user());
     }
 }
