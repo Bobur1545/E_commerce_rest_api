@@ -13,33 +13,123 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        Category::create([
+        $category = Category::create([
             'name' => [
                 'uz' => 'Stol',
                 'ru' => 'Стол',
             ],
         ]);
+        $category->childCategories()->create([
+            'name' => [
+                'uz' => 'Office',
+                'ru' => 'Офис',
+            ],
+        ]);
+        $category->childCategories()->create([
+            'name' => [
+                'uz' => 'Game',
+                'ru' => 'Игра',
+            ],
+        ]);
 
-        Category::create([
+
+
+
+
+        $category = Category::create([
             'name' => [
                 'uz' => 'Divan',
                 'ru' => 'Диван',
             ],
         ]);
+        $category->childCategories()->create([
+            'name' => [
+                'uz' => 'Office',
+                'ru' => 'Офис',
+            ],
+        ]);
+        $category->childCategories()->create([
+            'name' => [
+                'uz' => 'Uy',
+                'ru' => 'Дом',
+            ],
+        ]);
+        $category->childCategories()->create([
+            'name' => [
+                'uz' => 'Oshxona',
+                'ru' => 'кухня',
+            ],
+        ]);
 
-        Category::create([
+
+
+
+
+        $category = Category::create([
             'name' => [
                 'uz' => 'Kreslo',
                 'ru' => 'Кресло',
             ],
         ]);
+        $category->childCategories()->create([
+            'name' => [
+                'uz' => 'Office',
+                'ru' => 'Офис',
+            ],
+        ]);
+        $category->childCategories()->create([
+            'name' => [
+                'uz' => 'Plyaj',
+                'ru' => 'Пляж',
+            ],
+        ]);
+        $childCategory = $category->childCategories()->create([
+            'name' => [
+                'uz' => 'Uy',
+                'ru' => 'Дом',
+            ],
+        ]);
+        $childCategory->childCategories()->create([
+            'name' => [
+                'uz' => 'Prujinali',
+                'ru' => 'пружина',
+            ],
+        ]);
+        $childCategory->childCategories()->create([
+            'name' => [
+                'uz' => 'Matrasli',
+                'ru' => 'С матрасом',
+            ],
+        ]);
 
-        Category::create([
+
+
+
+
+        $category =  Category::create([
             'name' => [
                 'uz' => 'Yotoq',
                 'ru' => 'Кровать',
             ],
         ]);
+        $category->childCategories()->create([
+            'name' => [
+                'uz' => 'Office',
+                'ru' => 'Офис',
+            ],
+        ]);
+
+        $childCategory = $category->childCategories()->create([
+            'name' => [
+                'uz' => 'Uy',
+                'ru' => 'Дом',
+            ],
+        ]);
+
+
+
+
+
 
         Category::create([
             'name' => [

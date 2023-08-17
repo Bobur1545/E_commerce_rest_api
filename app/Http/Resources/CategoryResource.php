@@ -10,8 +10,13 @@ class CategoryResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-           'id' => $this->id,
-          'name' => $this->getTranslations('name')
+            'id' => $this->id,
+            'icon' => $this->icon,
+            'order' => $this->order,
+            'parent_id' => $this->parent_id,
+            'name' => $this->getTranslations('name'),
+            'child_categories' => self::collection($this->childCategories),
+            'parent_category' => $this->parentCategory
         ];
     }
 }
