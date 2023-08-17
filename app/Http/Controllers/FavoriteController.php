@@ -13,9 +13,9 @@ class FavoriteController extends Controller
         $this->middleware('auth:sanctum');
     }
 
-    public function index()
+    public function index():JsonResponse
     {
-        return auth()->user()->favorites()->paginate(20);
+        return $this->response([auth()->user()->favorites()->paginate(20)]);
     }
 
     public function store(Request $request): JsonResponse
@@ -30,7 +30,7 @@ class FavoriteController extends Controller
     /*
      * TODO refactor responses. make standart format
      */
-    public function destroy($favorite_id)
+    public function destroy($favorite_id):JsonResponse
     {
         if(auth()->user()->hasFavorite($favorite_id)){
             auth()->user()->favorites()->detach($favorite_id);

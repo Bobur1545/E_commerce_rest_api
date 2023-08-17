@@ -20,21 +20,21 @@ class OrderController extends Controller
         $this->middleware('auth:sanctum');
     }
 
-    public function index()
+    public function index():JsonResponse
     {
-        return auth()->user()->orders;
+        if(request()->has('status_id')){
+            return $this->response(OrderResource::collection(
+                auth()->user()->orders()->where('status_id', request('status_id'))->paginate(10))
+            );
+        }
+
+        return $this->response(OrderResource::collection(auth()->user()->orders()->paginate(10)));
     }
-
-
-
 
     public function create()
     {
         //
     }
-
-
-
 
     public function store(StoreOrderRequest $request): JsonResponse
     {
@@ -100,9 +100,9 @@ class OrderController extends Controller
 
 
 
-    public function show(Order $order)
+    public function show(Order $order):JsonResponse
     {
-        return new OrderResource($order);
+        return $this->response(new OrderResource($order));
     }
 
 

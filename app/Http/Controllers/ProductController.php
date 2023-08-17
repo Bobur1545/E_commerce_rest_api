@@ -6,15 +6,16 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use Illuminate\Http\JsonResponse;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index():JsonResponse
     {
-        return ProductResource::collection(Product::cursorPaginate(20));
+        return $this->response([ProductResource::collection(Product::cursorPaginate(20))]);
     }
 
     /**
@@ -36,9 +37,9 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show($id):JsonResponse
     {
-        return Product::with('stocks')->find($id);
+        return $this->response([Product::with('stocks')->find($id)]);
     }
 
     /**

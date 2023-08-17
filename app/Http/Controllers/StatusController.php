@@ -22,7 +22,7 @@ class StatusController extends Controller
         if($request->has('for')){
             return Status::where('for', $request['for'])->get();
         }
-        return Status::all();
+        return $this->response([Status::all()]);
     }
 
     /**

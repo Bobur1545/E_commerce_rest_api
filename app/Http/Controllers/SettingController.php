@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePaymentTypeRequest;
-use App\Http\Requests\UpdatePaymentTypeRequest;
-use App\Models\PaymentType;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\JsonResponse;
+use App\Http\Requests\StoreSettingRequest;
+use App\Http\Requests\UpdateSettingRequest;
+use App\Http\Resources\SettingResource;
+use App\Models\Setting;
 
-class PaymentTypeController extends Controller
+class SettingController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): JsonResponse
+    public function index()
     {
-        return $this->response([PaymentType::all()]);
+        return $this->response(SettingResource::collection(Setting::all()));
     }
 
     /**
@@ -29,7 +28,7 @@ class PaymentTypeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePaymentTypeRequest $request)
+    public function store(StoreSettingRequest $request)
     {
         //
     }
@@ -37,7 +36,7 @@ class PaymentTypeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PaymentType $paymentType)
+    public function show(Setting $setting)
     {
         //
     }
@@ -45,7 +44,7 @@ class PaymentTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PaymentType $paymentType)
+    public function edit(Setting $setting)
     {
         //
     }
@@ -53,7 +52,7 @@ class PaymentTypeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePaymentTypeRequest $request, PaymentType $paymentType)
+    public function update(UpdateSettingRequest $request, Setting $setting)
     {
         //
     }
@@ -61,7 +60,7 @@ class PaymentTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PaymentType $paymentType)
+    public function destroy(Setting $setting)
     {
         //
     }

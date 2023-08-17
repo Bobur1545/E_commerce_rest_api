@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AuthController extends Controller
 {
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request):JsonResponse
     {
         $user = User::where('email', $request->email)->first();
         if(!$user || !Hash::check($request->password, $user->password)) {
@@ -20,9 +21,9 @@ class AuthController extends Controller
             ]);
         }
 
-        return $this->response([
-            'token' => $user->createToken($request->email)->plainTextToken
-        ]);
+        return $this->success(
+            "User's token has been created successfully",['token' => $user->createToken($request->email)->plainTextToken]
+        );
     }
 
     public function register()
@@ -30,8 +31,14 @@ class AuthController extends Controller
 
     }
 
-    public function user(Request $request): UserResource
+    public function user(Request $request): JsonResponse
     {
-        return new UserResource($request->user());
+        return $this->response(new UserResource($request->user()));
     }
+
+    public function changePassword()
+    {
+
+    }
+
 }

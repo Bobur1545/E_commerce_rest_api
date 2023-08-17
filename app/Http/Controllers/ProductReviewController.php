@@ -19,9 +19,9 @@ class ProductReviewController extends Controller
     {
 
         return $this->response([
-            'overall_rating' => $product->reviews()->avg('rating'),
+            'overall_rating' => round($product->reviews()->avg('rating'), 2),
             'reviews_count' => $product->reviews()->count(),
-            'reviews' => ReviewResource::collection($product->reviews()->paginate(10))
+            'reviews' => $product->reviews()->with('user')->paginate(10)
         ]);
     }
 
@@ -34,9 +34,6 @@ class ProductReviewController extends Controller
             'body' => $request->body,
         ]);
 
-        return $this->success(
-            'review created', [$review]
-        );
-
+        return $this->success('review created', $review);
     }
 }
