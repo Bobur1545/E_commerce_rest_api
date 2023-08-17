@@ -16,6 +16,7 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ProductReviewController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\UserSettingController;
+use App\Http\Controllers\PaymentCardTypeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -43,5 +44,8 @@ Route::apiResources([
     'products.reviews' => ProductReviewController::class,
     'settings' => SettingController::class,
     'user-settings' => UserSettingController::class,
+    'payment-card-types' => PaymentCardTypeController::class,
+    'user-payment-cards' => UserPaymentCardsController::class,
+
 
 ]);

@@ -4,9 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserPaymentCards extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $fillable = [
+        'user_id', 'payment_card_type_id', 'name', 'number', 'last_four_number', 'exp_date', 'holder_name'
+    ];
+
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(PaymentCardType::class, 'payment_card_type_id', 'id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 }
