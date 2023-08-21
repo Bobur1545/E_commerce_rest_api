@@ -7,14 +7,20 @@ use App\Http\Requests\UpdateDeliveryMethodRequest;
 use App\Models\DeliveryMethod;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Gate;
 
 class DeliveryMethodController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
+
     public function index(): JsonResponse
     {
+        Gate::authorize('delivery-method:viewAny');
+
         return $this->response([DeliveryMethod::all()]);
     }
 

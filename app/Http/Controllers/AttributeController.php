@@ -5,31 +5,26 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAttributeRequest;
 use App\Http\Requests\UpdateAttributeRequest;
 use App\Models\Attribute;
+use Illuminate\Support\Facades\Gate;
 
 class AttributeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    public function __construct()
+    {
+        $this->middleware('auth:sanctum');
+    }
+
+
+
     public function index()
     {
-        //
+        Gate::authorize('order:viewAny');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreAttributeRequest $request)
     {
-        //
+        Gate::authorize('order:create');
     }
 
     /**
@@ -37,23 +32,12 @@ class AttributeController extends Controller
      */
     public function show(Attribute $attribute)
     {
-        //
+        Gate::authorize('order:view');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Attribute $attribute)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateAttributeRequest $request, Attribute $attribute)
     {
-        //
+        Gate::authorize('order:update');
     }
 
     /**
@@ -61,6 +45,6 @@ class AttributeController extends Controller
      */
     public function destroy(Attribute $attribute)
     {
-        //
+        Gate::authorize('order:delete');
     }
 }

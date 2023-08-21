@@ -15,7 +15,7 @@ class CategoryResource extends JsonResource
             'order' => $this->order,
             'parent_id' => $this->parent_id,
             'name' => $this->getTranslations('name'),
-            'child_categories' => self::collection($this->childCategories),
+            'child_categories' => $this->childCategories,
             'parent_category' => $this->parentCategory
         ];
     }

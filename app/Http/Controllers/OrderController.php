@@ -18,6 +18,7 @@ class OrderController extends Controller
     public function __construct()
     {
         $this->middleware('auth:sanctum');
+        $this->authorizeResource(Order::class, 'order');
     }
 
     public function index():JsonResponse
@@ -56,7 +57,7 @@ class OrderController extends Controller
                 $productResource = (new ProductResource($productWithStock));
 
 
-                $sum += $productResource['price'];
+                $sum += $productResource['price'] * $requestProduct['quantity'];
                 $products[] = $productResource->resolve();
             }else{
                 $requestProduct['we_have'] =  $product->stocks()->find($requestProduct['stock_id'])->quantity;
@@ -122,9 +123,10 @@ class OrderController extends Controller
     }
 
 
-
     public function destroy(Order $order)
     {
-        //
+//        $this->authorize('delete');
+        $order->delete();
+        return 1;
     }
 }
