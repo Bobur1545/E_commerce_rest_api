@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
@@ -26,9 +27,18 @@ class AuthController extends Controller
         );
     }
 
-    public function register()
-    {
+    /*
+     * TODO register function should be corrected and edited
+     */
 
+    public function register(RegisterRequest $request)
+    {
+        $data = $request->validated();
+        $data['password'] = Hash::make($request->password);
+        $user = User::create($data);
+//        auth()->login($user);
+
+        return $this->success('user has been succesfully created');
     }
 
     public function user(Request $request): JsonResponse
